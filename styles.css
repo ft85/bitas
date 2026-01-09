@@ -337,3 +337,194 @@ nav a.active::after {
         transform: rotate(360deg);
     }
 }
+
+/* Passport Photo Styles */
+.passport-photo-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 6px solid transparent;
+    background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ef4444, #10b981);
+    background-size: 400% 400%;
+    animation: gradientShift 4s ease-in-out infinite;
+    box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+}
+
+@media (min-width: 768px) {
+    .passport-photo-container {
+        width: 400px;
+        height: 400px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .passport-photo-container {
+        width: 500px;
+        height: 500px;
+    }
+}
+
+.passport-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: all 0.6s ease;
+    opacity: 0;
+    animation: photoFadeIn 2s ease-in-out 0.5s forwards;
+}
+
+.passport-photo-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1f2937, #374151);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9ca3af;
+    font-size: 4rem;
+    transition: all 0.6s ease;
+}
+
+/* Gradient border animation */
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Photo fade in animation */
+@keyframes photoFadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(1.1);
+        filter: blur(10px);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.05);
+        filter: blur(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+}
+
+/* Hover effects for photo */
+.passport-photo-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 30px 60px rgba(59, 130, 246, 0.4);
+    animation-duration: 2s;
+}
+
+.passport-photo-container:hover .passport-photo {
+    transform: scale(1.1);
+    filter: brightness(1.1) contrast(1.1);
+}
+
+.passport-photo-container:hover .passport-photo-placeholder {
+    transform: scale(1.1);
+    background: linear-gradient(135deg, #374151, #4b5563);
+}
+
+/* Floating animation for photo container */
+.photo-float {
+    animation: photoFloat 6s ease-in-out infinite;
+}
+
+@keyframes photoFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    33% {
+        transform: translateY(-10px);
+    }
+    66% {
+        transform: translateY(5px);
+    }
+}
+
+/* Pulse effect on load */
+.photo-pulse {
+    animation: photoPulse 2s ease-in-out;
+}
+
+@keyframes photoPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Glow effect */
+.photo-glow {
+    position: relative;
+}
+
+.photo-glow::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ef4444, #10b981);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    filter: blur(20px);
+}
+
+.photo-glow:hover::before {
+    opacity: 0.7;
+}
+
+/* Responsive adjustments for photo */
+@media (max-width: 768px) {
+    .passport-photo-container {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .passport-photo-placeholder {
+        font-size: 3rem;
+    }
+}
+
+/* Photo loading animation */
+.photo-loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.photo-loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: photoShimmer 2s infinite;
+}
+
+@keyframes photoShimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
